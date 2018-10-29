@@ -1,0 +1,45 @@
+import java.util.Scanner;
+
+class DoubleQueue {
+    //ATRIBUTOS
+    private String[] cc = new String[10];
+    private int root;
+    private int front;
+
+    DoubleQueue(){
+        this.root=0;
+        this.front=9;
+    }
+
+    //metodo push por izquierda
+    public void push_left(String item){
+        if((cc[front] == null)) {
+            cc[front] = item;
+            front--;
+            peek_all();
+        } else{
+            imprimir("Cola llena");
+        }
+    }
+
+    //metodo push por derecha
+    public void push_right(String item){
+        if((cc[root] == null)) {
+            cc[root] = item;
+            root++;
+            peek_all();
+        }else{
+            imprimir("Cola llena");
+        }
+    }
+public void menu(){
+        Scanner scn = new Scanner(System.in);
+        String cmd = scn.nextLine();
+        if (cmd.startsWith("left ")){
+            String item = cmd.substring(5);
+            push_left(item);
+            menu();
+        } else if (cmd.startsWith("right ")){
+            String item = cmd.substring(5);
+            push_right(item);
+            menu();
